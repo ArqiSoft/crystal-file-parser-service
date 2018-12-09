@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+    crystal-parser-service:
+        restart: always
+        container_name: crystal-file-parser
+        image: docker.your-company.com/sds/crystal-file-parser:latest
+        environment:
+        - TZ=EST
+        - OSDR_LOG_FOLDER=/logs
+        - OSDR_TEMP_FILES_FOLDER=/temp
+        - OSDR_RABBIT_MQ=rabbitmq://guest:guest@rabbitmq:5672/osdr_dev
+        - OSDR_MONGO_DB=mongodb://mongo:27017/osdr_dev
+        volumes:
+        - /home/logs:/logs/
+        - /home/temp:/temp/
+        build:
+            context: .
+        ports:
+        - 8984:8084
+        networks:
+        - osdr-net-ext
+            
+networks:
+    osdr-net-ext:
+        external:
+            name: osdr-sys-net
