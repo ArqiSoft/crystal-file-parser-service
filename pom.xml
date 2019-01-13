@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.sds</groupId>
+    <groupId>com.github.arqisoft</groupId>
     <artifactId>crystal-parser</artifactId>
     <version>0.13</version>
 
@@ -14,7 +14,7 @@
         <build.scm.hash>${env.GIT_COMMIT_SHORT}</build.scm.hash>
         <build.scm.author>${env.GIT_AUTHOR_NAME}</build.scm.author>
         <mongodb.databaseName>osdr_dev</mongodb.databaseName>
-		
+
         <java.version>1.8</java.version>
         <swagger.version>2.4.0</swagger.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,7 +27,6 @@
         <version>2.0.0.RC1</version>
         <relativePath />
     </parent>
-
 
     <dependencies>
         <dependency>
@@ -59,19 +58,19 @@
             <version>3.5.0</version>
         </dependency>
         <dependency>
-            <groupId>com.npspot</groupId>
+            <groupId>com.github.arqisoft</groupId>
             <artifactId>jtransit-light</artifactId>
             <version>1.10.35</version>
         </dependency>
         <dependency>
-            <groupId>com.sds</groupId>
+            <groupId>com.github.arqisoft</groupId>
             <artifactId>storage</artifactId>
-            <version>${osdr.version}</version>
+            <version>0.16</version>
         </dependency>
         <dependency>
-            <groupId>com.sds</groupId>
+            <groupId>com.github.arqisoft</groupId>
             <artifactId>json-schema-validator</artifactId>
-            <version>${osdr.version}</version>
+            <version>0.14</version>
         </dependency>
 
         <dependency>
@@ -96,12 +95,11 @@
             <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>sds</groupId>
+            <groupId>com.github.arqisoft</groupId>
             <artifactId>messaging</artifactId>
             <version>1.1</version>
         </dependency>
     </dependencies>
-
 
     <build>
         <resources>
@@ -120,6 +118,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -135,6 +140,10 @@
         <repository>
             <id>nexus</id>
             <url>${nexus.release.url}</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
