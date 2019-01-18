@@ -4,7 +4,7 @@ services:
     crystal-parser-service:
         restart: always
         container_name: crystal-file-parser
-        image: docker.your-company.com/sds/crystal-file-parser:latest
+        image: leanda/crystal-file-parser:latest
         environment:
         - TZ=EST
         - OSDR_LOG_FOLDER=/logs
